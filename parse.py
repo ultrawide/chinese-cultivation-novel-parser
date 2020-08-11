@@ -4,7 +4,7 @@
 # Colin Chan
 # Script to scrape and condense chapter contents into one text file
 # To use: Edit three constants for novel. Open text file in fbreader
-# Depedencies: beautiful soup -> pip install beautifulsoup4
+# Dependencies: beautiful soup -> pip install beautifulsoup4
 
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
