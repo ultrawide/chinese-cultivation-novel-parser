@@ -1,14 +1,13 @@
-from urllib.request import urlopen, Request
-from bs4 import BeautifulSoup
-import os
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
+import os
+
 DATA_SOURCE = "https://www.wuxiaworld.com/novel/rmji/rmji-chapter-"
 NUM_CHAPTERS = 1629
-
 WRITE_FILE = os.path.join(os.getcwd(), "rmji.txt")
-
 
 def main():
     """ Main program """
@@ -27,10 +26,10 @@ def main():
         # Retrieve raw HTML of current webpage
         data_source = DATA_SOURCE + str(i+1)
         req = Request(url=data_source, headers=headers)
-        sampleData = urlopen(req).read()
+        sample_data = urlopen(req).read()
 
         # Write chapter contents to text file
-        soup = BeautifulSoup(sampleData)
+        soup = BeautifulSoup(sample_data)
         content = soup.find(id="chapter-content")
         content = content.find_all('p')
         for x in content:
