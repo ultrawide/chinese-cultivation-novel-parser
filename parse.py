@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Colin Chan
+# Script to scrub content and condense data into one text file
+# To use: Edit three constants for novel. Open text file in fbreader
+# Depedencies: beautiful soup -> pip install beautifulsoup4
+
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import os
@@ -32,16 +37,19 @@ def main():
         req = Request(url=data_source, headers=headers)
         sample_data = urlopen(req).read()
 
-        # Write chapter contents to text file
+        # Filter and format chapter contents
+        # Warning: Chapter title location is not consistent.
+        #          Title location can vary, different p/div tag
+        # Todo: Find a more robust way to insert chapter title
         soup = BeautifulSoup(sample_data)
-
-        # Warning: Chapter # + title may not be located
-        # in a p tag, or in chapter-content id attributes
         content = soup.find(id="chapter-content")
         content = content.find_all('p')
+
+        # Write chapter contents to text file
         for x in content:
             f.write(x.text + "\n\n")
 
+        # Current status
         print("Page" + str(i))
 
     f.close()
