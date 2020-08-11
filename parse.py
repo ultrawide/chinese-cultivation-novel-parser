@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Colin Chan
-# Script to scrub content and condense data into one text file
+# Script to scrape and condense chapter contents into one text file
 # To use: Edit three constants for novel. Open text file in fbreader
 # Depedencies: beautiful soup -> pip install beautifulsoup4
 
