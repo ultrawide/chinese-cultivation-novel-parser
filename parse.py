@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Colin Chan
-# Script to scrape and condense chapter contents into one text file
-# To use: Edit three constants as per desired novel. Use FBReader for viewing.
+# Scrape and condense chapter contents into a text file
+# To use: Edit three constants per novel detials. Use FBReader for viewing.
 # Dependencies: beautiful soup -> pip install beautifulsoup4
 
 from urllib.request import urlopen, Request
@@ -38,9 +38,8 @@ def main():
         sample_data = urlopen(req).read()
 
         # Filter and format chapter contents
-        # Warning: Chapter title location is not consistent.
-        #          Title location can vary, different p/div tag
-        # Todo: Find a more robust way to insert chapter title
+        # Warning: Chapter information tag is not consistent
+        # Todo: Need robust method to insert chapter title information
         soup = BeautifulSoup(sample_data)
         content = soup.find(id="chapter-content")
         content = content.find_all('p')
@@ -50,7 +49,7 @@ def main():
             f.write(x.text + "\n\n")
 
         # Current status
-        print("Page" + str(i))
+        print("Page" + str(i+i))
 
     f.close()
     return 0
