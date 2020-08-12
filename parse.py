@@ -3,7 +3,7 @@
 
 # Colin Chan
 # Scrape and condense chapter contents into a text file
-# To use: Edit three constants per novel detials. Use FBReader for viewing.
+# To use: Edit three constants per novel details. Use FBReader for viewing.
 # Dependencies: beautiful soup -> pip install beautifulsoup4
 
 from urllib.request import urlopen, Request
