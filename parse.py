@@ -1,20 +1,17 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-# Colin Chan
+###########################################################
 # Scrape and condense chapter contents into a text file
-# To use: Edit three constants per novel details. Use FBReader for viewing.
+# To use: Edit the three constants as per novel.
 # Dependencies: beautiful soup -> pip install beautifulsoup4
+###########################################################
 
-from urllib.request import urlopen, Request
-from bs4 import BeautifulSoup
 import os
 import io
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
 
 DATA_SOURCE = "https://www.wuxiaworld.com/novel/rmji/rmji-chapter-"
 NUM_CHAPTERS = 20
 WRITE_FILE = os.path.join(os.getcwd(), "rmji.txt")
-
 
 def main():
     """ Main program """
@@ -50,9 +47,6 @@ def main():
 
             # Current status
             print("Page" + str(chapter))
-
-    return 0
-
 
 if __name__ == "__main__":
     main()
