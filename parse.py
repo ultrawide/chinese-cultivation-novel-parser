@@ -9,9 +9,10 @@
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import os
+import io
 
 DATA_SOURCE = "https://www.wuxiaworld.com/novel/rmji/rmji-chapter-"
-NUM_CHAPTERS = 1629
+NUM_CHAPTERS = 20
 WRITE_FILE = os.path.join(os.getcwd(), "rmji.txt")
 
 
@@ -29,29 +30,27 @@ def main():
     if os.path.exists(WRITE_FILE):
         os.remove(WRITE_FILE)
 
-    f = open(WRITE_FILE, "a")
+    with io.open(WRITE_FILE, "a", encoding="utf-8") as f:
+        for chapter in range(1, NUM_CHAPTERS):
+            # Retrieve raw HTML of current webpage
+            data_source = DATA_SOURCE + str(chapter)
+            req = Request(url=data_source, headers=headers)
+            sample_data = urlopen(req).read()
 
-    for i in range(NUM_CHAPTERS):
-        # Retrieve raw HTML of current webpage
-        data_source = DATA_SOURCE + str(i+1)
-        req = Request(url=data_source, headers=headers)
-        sample_data = urlopen(req).read()
+            # Filter and format chapter contents
+            # Warning: Chapter information tag is not consistent
+            # Todo: Need robust method to insert chapter title information
+            soup = BeautifulSoup(sample_data)
+            content = soup.find(id="chapter-content")
+            content = content.find_all('p')
 
-        # Filter and format chapter contents
-        # Warning: Chapter information tag is not consistent
-        # Todo: Need robust method to insert chapter title information
-        soup = BeautifulSoup(sample_data)
-        content = soup.find(id="chapter-content")
-        content = content.find_all('p')
+            # Write chapter contents to text file
+            for x in content:
+                f.write(x.text + "\n\n")
 
-        # Write chapter contents to text file
-        for x in content:
-            f.write(x.text + "\n\n")
+            # Current status
+            print("Page" + str(chapter))
 
-        # Current status
-        print("Page" + str(i+i))
-
-    f.close()
     return 0
 
 
