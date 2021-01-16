@@ -1,9 +1,12 @@
-# jade-slip-replicator
-Scrapes and condenses chapter contents into a text file. 
+# Jade Slip Replicator
+Scrapes chapter contents to a text file. Consume using your favourite reader. 
 
-# To use, modify the below parameters
+# Usage
+Capture and read in the first 100 chapters of light novel RMJI
+
 * DATA_SOURCE = "https://www.wuxiaworld.com/novel/rmji/rmji-chapter-"
-* NUM_CHAPTERS = 20
+* NUM_CHAPTERS = 100
 * WRITE_FILE = os.path.join(os.getcwd(), "rmji.txt")
 
-Writes chapter contents from chapters 1-20 in rmji.txt.
+# Dependencies: 
+ * beautiful soup -> pip install beautifulsoup4
